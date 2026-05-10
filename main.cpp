@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <vector>
+#include "Heap.h"
 
 void VectorInput(std::vector<int>* InScoville);
 int MaxScovilleInput();
@@ -19,13 +20,7 @@ int main()
     MaxScoville = MaxScovilleInput();
 
     TempResult = solution(Scoville, MaxScoville);
-    //std::cout << TempResult;
-
-    for (int i = 0; i < Scoville.size(); i++)
-    {
-        std::cout << Scoville[i] << " | ";
-    }
-    std::cout << std::endl << MaxScoville;
+    std::cout << TempResult;
 
     return 0;
 }
@@ -55,5 +50,10 @@ int MaxScovilleInput()
 int solution(std::vector<int> scoville, int K)
 {
     int answer = 0;
+
+    Heap scovilleHeap = Heap();
+    scovilleHeap.heapify(scoville);
+    scovilleHeap.PrintHeap();
+
     return answer;
 }
