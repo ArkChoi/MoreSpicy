@@ -59,6 +59,10 @@ void Heap::heappush(int InKey)
 		Swap(&HeapVector[i], &HeapVector[Parent]);
 		i = Parent; //부모로 이동
 		Parent = i / 2; //부모 재계산 
+		if (Parent == 0) //0번 인덱스 예외처리
+		{
+			break;
+		}
 	}
 }
 
