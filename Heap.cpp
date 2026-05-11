@@ -45,8 +45,21 @@ void Heap::heapify(std::vector<int> &InVector)
 	}
 }
 
-void Heap::heappush(int InNumber)
+void Heap::heappush(int InKey)
 {
+	if (HeapVector.empty()) //0번칸 NULL 예외처리
+	{
+		HeapVector.push_back(NULL);
+	}
+	HeapVector.push_back(InKey); // 마지막 노드에 key 값을 삽입
+	int i = HeapVector.size() - 1;
+	int Parent = i / 2; //부모노드 탐색
+	while (HeapVector.size() > 2 && HeapVector[i] > HeapVector[Parent]) //부모보다 크면
+	{
+		Swap(&HeapVector[i], &HeapVector[Parent]);
+		i = Parent; //부모로 이동
+		Parent = i / 2; //부모 재계산 
+	}
 }
 
 int Heap::heappop()

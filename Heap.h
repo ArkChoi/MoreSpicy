@@ -15,7 +15,7 @@ public:
     //정적 배열을 힙으로 만들기 
     void heapify(std::vector<int> &InVector);
     //동적 삽입 (sift-up) 연산 
-    void heappush(int InNumber);
+    void heappush(int InKey);
     //삭제(remove = sift-down) 연산
     int  heappop();
 

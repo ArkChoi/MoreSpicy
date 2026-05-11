@@ -52,7 +52,11 @@ int solution(std::vector<int> scoville, int K)
     int answer = 0;
 
     Heap scovilleHeap = Heap();
-    scovilleHeap.heapify(scoville);
+    //scovilleHeap.heapify(scoville);
+    for (int i = 0; i < scoville.size(); i++)
+    {
+        scovilleHeap.heappush(scoville[i]);
+    }
     scovilleHeap.PrintHeap();
 
     return answer;
