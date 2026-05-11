@@ -1,6 +1,8 @@
 #pragma once
 #include <vector>
 
+//C++은 기본 최대힙
+//단 문제 풀이를 위해 최소 힙으로 변경
 class Heap
 {
 private:
@@ -18,6 +20,8 @@ public:
     void heappush(int InKey);
     //삭제(remove = sift-down) 연산
     int  heappop();
+    //root의 원소를 리턴 (삭제X)
+    int  heapfront();
 
     //단순 내용 출력 함수 본래 존재하면 안됨
     void PrintHeap();

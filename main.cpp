@@ -9,6 +9,7 @@
 void VectorInput(std::vector<int>* InScoville);
 int MaxScovilleInput();
 int solution(std::vector<int> scoville, int K);
+int Mix(Heap* InScovilleHeap);
 
 int main()
 {
@@ -52,12 +53,37 @@ int solution(std::vector<int> scoville, int K)
     int answer = 0;
 
     Heap scovilleHeap = Heap();
-    //scovilleHeap.heapify(scoville);
-    for (int i = 0; i < scoville.size(); i++)
+    scovilleHeap.heapify(scoville);
+
+    while (scovilleHeap.heapfront() < K)
     {
-        scovilleHeap.heappush(scoville[i]);
+        if (Mix(&scovilleHeap)) //Mix 함수 사용, 인자값으로 1개 남았는지 체크까지 진행
+        {
+            answer++;
+        }
+        else
+        {
+            answer = -1;
+            break;
+        }
     }
-    scovilleHeap.PrintHeap();
 
     return answer;
+}
+
+int Mix(Heap* InScovilleHeap)
+{
+    //섞은 음식의 스코빌 지수 = 가장 맵지 않은 음식의 스코빌 지수 + (두 번째로 맵지 않은 음식의 스코빌 지수 * 2)
+    int FirstScoville = InScovilleHeap->heappop();
+    int SecondScoville = InScovilleHeap->heappop();
+
+    if (SecondScoville == -1) //만일 모든 음식을 섞어 1개만 남았는데 섞는 행위를 하는 예외처리
+    {
+        return 0; //false
+    }
+
+    int MixScoville = FirstScoville + (SecondScoville * 2);
+    InScovilleHeap->heappush(MixScoville);
+
+    return 1; //true
 }
